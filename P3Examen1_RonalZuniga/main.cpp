@@ -77,7 +77,10 @@ int main(int argc, char** argv) {
 			}
 
 			case 2: {
-				
+				vector<Partido*> p = league->generarJornada();
+				league->simularPartidos(p);
+				league->posiciones.actualizarTabla(p);
+				league->imprimirTabla();
 				break;
 			}
 

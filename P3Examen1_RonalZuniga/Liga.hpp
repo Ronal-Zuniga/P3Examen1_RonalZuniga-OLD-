@@ -17,7 +17,6 @@ class Liga{
 		string nombre;
 		vector<Equipo*> equipos;
 		vector<Partido*> jornada;
-		Tabla posiciones;
 	public:
 		Liga();
 		Liga(string);
@@ -29,12 +28,13 @@ class Liga{
 		void modificarEquipo(string, string);
 		void eliminarEquipo(string);
 		void listarEquipos();
-		void generarJornada();
+		vector<Partido*> generarJornada();
 		vector<Partido*> simularPartidos(vector<Partido*>);
 		void imprimirTabla();
 		vector<Partido*> getJornadas();	
 		int valor(int, int);
 		int goles(int);
+		Tabla posiciones;
 };
 #endif
 

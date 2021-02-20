@@ -114,7 +114,7 @@ void Liga::imprimirTabla() {
 		cout << setw(3);
 		cout << (pe->getEq()->getNombre()) << setw(10) << ((pe->getPartidosE()) + (pe->getPartidosG()) + (pe->getPartidosP())) << setw(3) << (pe->getPartidosG()) << setw(3) << (pe->getPartidosE())
 		     << setw(3) << (pe->getPartidosP())<< setw(3) << (pe->getGolesF())<< setw(3) << pe->getGolesC() << setw(3) << ((pe->getPartidosG() * 3) + pe->getPartidosE()) << endl;
-		
+
 	}
 	cout << endl;
 	cout << endl;
@@ -124,7 +124,7 @@ vector<Partido*> Liga::simularPartidos(vector<Partido*> temp) {
 	srand ((unsigned)time(0));
 	int _valor1 = valor(-15, 15);
 	int _valor2 = valor(-15, 15);
-	for (int i = 0; i < temp.size(); i++){
+	for (int i = 0; i < temp.size(); i++) {
 		Partido* match = temp[i];
 		Equipo* eq1 = match->getEq1();
 		Equipo* eq2 = match->getEq2();
@@ -133,10 +133,10 @@ vector<Partido*> Liga::simularPartidos(vector<Partido*> temp) {
 		int gEq1 = goles(skillEq1);
 		int gEq2 = goles(skillEq2);
 		Partido* p;
-		if(skillEq1 == skillEq2){
+		if(skillEq1 == skillEq2) {
 			gEq1 = gEq2;
 			p = new Partido(eq1, eq2, gEq1, gEq2, true);
-		} else{
+		} else {
 			p = new Partido(eq1, eq2, gEq1, gEq2, true);
 		}
 		delete match;
@@ -151,15 +151,55 @@ int Liga::valor(int min, int max) {
 	int v = min + (rand() % (max - min));
 	return v;
 }
- 
-int Liga::goles(int skill){
+
+int Liga::goles(int skill) {
 	double div = skill / 10;
 	int goal = (int)div;
 	return goal;
 }
 
-void Liga::generarJornada(){
-	
+vector<Partido*> Liga::generarJornada() {
+	vector<Partido*> p;
+	int partidos = equipos.size() - 2;
+	int eq = equipos.size() - 1;
+	int size = partidos * eq;
+	if(jornada.size() < size) {
+		for(int x = 0; x < size; x++) {
+			int peq1 = valor(0, size);
+			int peq2 = valor(0, size);
+			bool flag;
+			if(peq1 != peq2) {
+				Equipo* eq1 = equipos[peq1];
+				Equipo* eq2 = equipos[peq2];
+				Partido* pt1 = new Partido(eq1, eq2, 0, 0, false);
+				Partido* pt2 = new Partido(eq2, eq1, 0, 0, false);
+				for (int i = 0; i < jornada.size(); i++) {
+					Partido* match = jornada[i];
+					if(match->getEq1()== eq1 || match->getEq1() == eq2 || match->getEq2()== eq1 || match->getEq2() == eq2) {
+						flag = true;
+						i = jornada.size();
+					} else {
+						flag = false;
+					}
+					delete match;
+				}
+				if(flag) {
+					cout << "El partido " << eq1->getNombre() << " vs " << eq2->getNombre() << " ya se disputó";
+				} else {
+					p.push_back(pt1);
+				}
+				delete eq1;
+				delete eq2;
+				delete pt1;
+				delete pt2;
+			}
+
+		}
+
+	} else {
+		cout << "Los equipos ya jugaron todos sus partidos";
+	}
+	return p;
 }
 
 
