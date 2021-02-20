@@ -6,22 +6,22 @@ using namespace std;
 
 class PuntosEquipo{
 	private:
-		Equipo equipo;
+		Equipo* equipo;
 		int gFavor, gContra, pGanados, pPerdidos, pEmpatados;
 	public:
 		PuntosEquipo();
-		PuntosEquipo(Equipo, int, int, int, int, int);
-		Equipo getEq();
-		void setEq(Equipo);
+		PuntosEquipo(Equipo*, int, int, int, int, int);
+		Equipo* getEq();
+		void setEq(Equipo*);
 		int getGolesF();
 		void setGolesF(int);
 		int getGolesC();
 		void setGolesC(int);
 		int getPartidosG();
-		void setPartidosG(int);
+		void setPartidosG(bool);
 		int getPartidosE();
-		void setPartidosE(int);
+		void setPartidosE(bool);
 		int getPartidosP();
-		void setPartidosP(int);
+		void setPartidosP(bool);
 };
 #endif

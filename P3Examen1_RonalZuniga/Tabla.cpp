@@ -44,3 +44,47 @@ void Tabla::ordenarPosiciones() {
 		}
 	}
 }
+
+void Tabla::actualizarTabla(vector<Partido*> jornada){
+	for (int i = 0; i < jornada.size(); i++){
+		Partido* match = jornada[i];
+		Equipo* eq1 = match->getEq1();
+		Equipo* eq2 = match->getEq2();
+		for (int j = 0; j < puntosEq.size(); j++){
+			PuntosEquipo* ptsEq = puntosEq[i];
+			Equipo* e = ptsEq->getEq();
+			if(e == eq1 || e == eq2){
+				if(e == eq1){
+					ptsEq->setGolesF(match->getGolesEq1());
+					ptsEq->setGolesC(match->getGolesEq2());
+					if(match->getGolesEq1() == match->getGolesEq2()){
+						ptsEq->setPartidosE(true);
+					}else{
+						if(match->getGolesEq1() > match->getGolesEq2()){
+							ptsEq->setPartidosG(true);
+						} else{
+							ptsEq->setPartidosP(true);
+						}
+					}
+				} else{
+					ptsEq->setGolesF(match->getGolesEq2());
+					ptsEq->setGolesC(match->getGolesEq1());
+					if(match->getGolesEq1() == match->getGolesEq2()){
+						ptsEq->setPartidosE(true);
+					}else{
+						if(match->getGolesEq2() > match->getGolesEq1()){
+							ptsEq->setPartidosG(true);
+						} else{
+							ptsEq->setPartidosP(true);
+						}
+					}
+				}
+			}
+			delete e;
+			delete ptsEq;
+		}
+		delete eq1;
+		delete eq2;
+		delete match;
+	}
+}

@@ -3,9 +3,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
+#include <ctime>
+#include <cstdlib>
 #include "Equipo.hpp"
 #include "Partido.hpp"
 #include "Tabla.hpp"
+#include "PuntosEquipo.hpp"
 using namespace std;
 
 class Liga{
@@ -26,8 +30,11 @@ class Liga{
 		void eliminarEquipo(string);
 		void listarEquipos();
 		void generarJornada();
-		void simularPartidos();
-		void imprimirTabla();		
+		vector<Partido*> simularPartidos(vector<Partido*>);
+		void imprimirTabla();
+		vector<Partido*> getJornadas();	
+		int valor(int, int);
+		int goles(int);
 };
 #endif
 

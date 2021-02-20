@@ -3,7 +3,7 @@
 PuntosEquipo::PuntosEquipo(){
 }
 
-PuntosEquipo::PuntosEquipo(Equipo eq, int _gf, int _gc, int _pg, int _pe, int _pp){
+PuntosEquipo::PuntosEquipo(Equipo* eq, int _gf, int _gc, int _pg, int _pe, int _pp){
 	this->equipo = eq;
 	this->gFavor = _gf;
 	this->gContra = _gc;
@@ -12,11 +12,11 @@ PuntosEquipo::PuntosEquipo(Equipo eq, int _gf, int _gc, int _pg, int _pe, int _p
 	this->pPerdidos = _pp;
 }
 
-Equipo PuntosEquipo::getEq(){
+Equipo* PuntosEquipo::getEq(){
 	return this->equipo;
 }
 
-void PuntosEquipo::setEq(Equipo eq){
+void PuntosEquipo::setEq(Equipo* eq){
 	this->equipo = eq;
 }
 
@@ -25,7 +25,7 @@ int PuntosEquipo::getGolesF(){
 }
 
 void PuntosEquipo::setGolesF(int goles){
-	this->gFavor = goles;
+	this->gFavor+= goles;
 }
 
 int PuntosEquipo::getGolesC(){
@@ -33,29 +33,38 @@ int PuntosEquipo::getGolesC(){
 }
 
 void PuntosEquipo::setGolesC(int goles){
-	this->gContra = goles;
+	this->gContra += goles;
 }
 
 int PuntosEquipo::getPartidosG(){
 	return this->pGanados;
 }
 
-void PuntosEquipo::setPartidosG(int partidos){
-	this->pGanados = partidos;
+void PuntosEquipo::setPartidosG(bool b){
+	if(b){
+		this->pGanados++;
+	}
+	
 }
 
 int PuntosEquipo::getPartidosE(){
 	return this->pEmpatados;
 }
 
-void PuntosEquipo::setPartidosE(int partidos){
-	this->pEmpatados = partidos;
+void PuntosEquipo::setPartidosE(bool b){
+	if(b){
+		this->pEmpatados++;
+	}
+	
 }
 
 int PuntosEquipo::getPartidosP(){
 	return this->pPerdidos;
 }
 
-void PuntosEquipo::setPartidosP(int partidos){
-	this->pPerdidos = partidos;
+void PuntosEquipo::setPartidosP(bool b){
+	if(b){
+		this->pPerdidos++;
+	}
+	
 }

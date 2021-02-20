@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "PuntosEquipo.hpp"
+#include "Partido.hpp"
 using namespace std;
 
 class Tabla{
@@ -14,5 +15,6 @@ class Tabla{
 		void agregarPuntosEquipo(PuntosEquipo*);
 		vector<PuntosEquipo*> getTabla();
 		void ordenarPosiciones();
+		void actualizarTabla(vector<Partido*>);
 };
 #endif
